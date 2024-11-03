@@ -1,11 +1,8 @@
 import typer
+from workflows.jobs.twitch_to_slack import app as twitch_to_slack_app
 
 app = typer.Typer()
-
-
-@app.command()
-def twitch_to_slack():
-    print("hello")
+app.add_typer(twitch_to_slack_app, name="tts")
 
 
 @app.command()
