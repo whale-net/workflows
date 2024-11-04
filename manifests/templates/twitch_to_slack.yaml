@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: workflow-twitch-to-slack
+  # temp
+  namespace: argo-workflows
+spec:
+  entrypoint: tts-temp
+#  arguments:
+#    parameters:
+#      - name: message
+#        value: one
+#        enum:
+#          -   one
+#          -   two
+#          -   three
+  templates:
+    - name: tts-temp
+#      inputs:
+#        parameters:
+#          - name: message
+#            value: '{{workflow.parameters.message}}'
+      container:
+        name: main
+        image: ghcr.io/whale-net/workflows:dev
+        args:
+          - tts
+          - temp-entrypoint
+        env:
+          - name: TWITCH_API_APP_ID
+            valueFrom:
+              secretKeyRef:
+                key: twitch-secrets
+                name: api-app-id
+          - name: TWITCH_API_APP_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: twitch-secrets
+                name: api-app-secret
+          - name: SLACK_WHALEBOT_OAUTH_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: slack-secrets
+                name: whalebot-oauth-token
+          # TODO long term should be sourced from elsewhere
+          - name: SLACK_TWITCH_ALERT_CHANNEL_ID
+            valueFrom:
+              secretKeyRef:
+                key: twitch-secrets
+                name: twitch-alert-channel-id

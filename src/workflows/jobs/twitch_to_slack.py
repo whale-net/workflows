@@ -81,7 +81,7 @@ def temp_entrypoint():
     twitch_app_secret = os.environ.get("TWITCH_API_APP_SECRET")
     # slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")
     # TODO improve this
-    # slack_channel_id = os.environ.get("TWITCH_ALERT_SLACK_CHANNEL_ID")
+    # slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
 
     # results = get_live_twitch_channels(twitch_app_id, twitch_app_secret)
     get_live_twitch_channels(twitch_app_id, twitch_app_secret)
