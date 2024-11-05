@@ -99,6 +99,6 @@ async def get_live_channels(
             result_list.append(result)
 
         else:
-            print(f"{user.login} not recently live")
+            print(f"{user.login} not recently live", started_at)
 
     return result_list
