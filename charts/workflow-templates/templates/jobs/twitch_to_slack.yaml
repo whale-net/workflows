@@ -4,6 +4,7 @@ metadata:
   name: twitch-to-slack
   namespace: {{.Values.namespace}}
   labels:
+    test123: workpls
     {{- include "workflows.labels" . | nindent 4 }}
 spec:
   entrypoint: tts-temp
