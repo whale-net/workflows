@@ -1,6 +1,7 @@
 import asyncio
 import os
 from datetime import datetime, timedelta, timezone
+from typing import Annotated
 
 import typer
 
@@ -10,6 +11,7 @@ from workflows.repositories.twitch import (
     LiveChannelResult,
 )
 from workflows.repositories.slack import get_client, send_message
+from workflows.util import parse_rfc3339_datetime
 
 # TODO - this minute should come from run config, last - current
 # last comes from cronworkflow, how to pass?
@@ -77,11 +79,14 @@ def send_recently_live_to_slack(
     final_msg = "\n".join(final_message_list)
 
     slack_client = get_client(slack_oauth_token)
+    print(final_msg)
     send_message(slack_client, slack_channel_id, message=final_msg)
 
 
 @app.command()
-def temp_entrypoint(run_time: datetime | None = None):
+def temp_entrypoint(
+    run_time: Annotated[datetime, typer.Argument(parser=parse_rfc3339_datetime)],
+):
     twitch_app_id = os.environ.get("TWITCH_API_APP_ID")
     twitch_app_secret = os.environ.get("TWITCH_API_APP_SECRET")
     slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")

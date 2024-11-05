@@ -8,27 +8,23 @@ spec:
   entrypoint: tts-temp
   # temp
   serviceAccountName: argo-workflow
-#  arguments:
-#    parameters:
-#      - name: message
-#        value: one
-#        enum:
-#          -   one
-#          -   two
-#          -   three
+  arguments:
+    parameters:
+      - name: scheduled-time
+        default: "{{workflow.creationTimestamp.RFC3339}}"
   templates:
     - name: tts-temp
-#      inputs:
-#        parameters:
-#          - name: message
-#            value: '{{workflow.parameters.message}}'
+      inputs:
+        parameters:
+          - name: scheduled-time
+            default: "{{workflow.creationTimestamp.RFC3339}}"
       container:
         name: main
         image: ghcr.io/whale-net/workflows:dev
         args:
-          - tts
-          - temp-entrypoint
-          - '{{workflow.scheduledTime}}'
+          - "twitch-to-slack"
+          - "temp-entrypoint"
+          - "{{inputs.parameters.scheduled-time}}"
         env:
           - name: TWITCH_API_APP_ID
             valueFrom:

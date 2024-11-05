@@ -8,6 +8,8 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "iso8601>=2.1.0",
+    "rfc3339>=6.2",
     "slack-sdk>=3.33.3",
     "twitchapi>=4.3.1",
     "typer>=0.12.5",
