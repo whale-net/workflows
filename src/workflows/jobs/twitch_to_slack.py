@@ -67,6 +67,7 @@ def send_recently_live_to_slack(
     body_parts: list[str] = []
 
     current_time = datetime.now(tz=timezone.utc)
+    print("current_time", current_time)
     url_base = "https://twitch.tv/"
     for result in live_channels:
         start_diff = current_time - result.started_at
@@ -93,5 +94,6 @@ def temp_entrypoint(
     # TODO improve this
     slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
 
+    print("run_time", run_time)
     results = get_live_twitch_channels(twitch_app_id, twitch_app_secret, run_time)
     send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)
