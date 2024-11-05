@@ -83,11 +83,9 @@ def send_recently_live_to_slack(
 def temp_entrypoint(run_time: datetime | None = None):
     twitch_app_id = os.environ.get("TWITCH_API_APP_ID")
     twitch_app_secret = os.environ.get("TWITCH_API_APP_SECRET")
-    # slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")
+    slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")
     # TODO improve this
-    # slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
+    slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
 
     results = get_live_twitch_channels(twitch_app_id, twitch_app_secret, run_time)
-    print(results)
-    return str(results)
-    # send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)
+    send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)
