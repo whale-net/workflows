@@ -47,3 +47,10 @@ then you can run pre-commit manually with
 ```
 uvx pre-commit
 ```
+
+### commands
+
+helm dry run
+```
+helm install --dry-run workflows chart
+```
