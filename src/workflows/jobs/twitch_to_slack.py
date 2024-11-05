@@ -12,7 +12,8 @@ from workflows.repositories.twitch import (
 from workflows.repositories.slack import get_client, send_message
 
 # TODO - this minute should come from run config, last - current
-LIVE_CHECK_PERIOD = timedelta(minutes=1000)
+# last comes from cronworkflow, how to pass?
+LIVE_CHECK_PERIOD = timedelta(minutes=1)
 app = typer.Typer()
 
 
