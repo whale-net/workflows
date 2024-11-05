@@ -84,5 +84,6 @@ def temp_entrypoint():
     # slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
 
     # results = get_live_twitch_channels(twitch_app_id, twitch_app_secret)
-    get_live_twitch_channels(twitch_app_id, twitch_app_secret)
+    results = get_live_twitch_channels(twitch_app_id, twitch_app_secret)
+    return str(results)
     # send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)
