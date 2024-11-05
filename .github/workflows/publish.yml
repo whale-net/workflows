@@ -46,6 +46,4 @@ jobs:
           #tags: ${{ steps.meta.outputs.tags }}
           #labels: ${{ steps.meta.outputs.labels }}
           # hardcoding while it's runnin off main
-          tags:
-            - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
-            - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
