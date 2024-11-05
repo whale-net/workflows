@@ -29,7 +29,6 @@ def get_live_twitch_channels(
         "moomasterq",
         "noodlesruns",
         "kingcolony",
-        "summit1g",
     ]
 
     twitch = asyncio.run(get_connection_twitch(twitch_app_id, twitch_app_secret))
