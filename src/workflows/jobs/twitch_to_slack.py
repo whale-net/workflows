@@ -10,6 +10,7 @@ from workflows.repositories.twitch import (
     get_live_channels,
     LiveChannelResult,
 )
+from workflows.repositories.slack import get_client, send_message
 from workflows.util import parse_rfc3339_datetime
 
 # TODO - this minute should come from run config, last - current
@@ -78,9 +79,9 @@ def send_recently_live_to_slack(
     final_message_list = [header, *body_parts]
     final_msg = "\n".join(final_message_list)
 
-    # slack_client = get_client(slack_oauth_token)
+    slack_client = get_client(slack_oauth_token)
     print(final_msg)
-    # send_message(slack_client, slack_channel_id, message=final_msg)
+    send_message(slack_client, slack_channel_id, message=final_msg)
 
 
 @app.command()
