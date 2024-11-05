@@ -3,6 +3,16 @@ entries:
   workflows:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-11-05T18:41:31.630420663Z"
+    description: whale-net workflow definitions
+    digest: 1f7d82ac5e102801c8c81cf2c749b7f715a59d34b5a6bd8f1b19dff91ad11604
+    name: workflows
+    type: application
+    urls:
+    - https://github.com/whale-net/workflows/releases/download/workflows-0.1.1/workflows-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-11-05T18:31:09.844419231Z"
     description: whale-net workflow definitions
     digest: 1d1fec1dce43bef211aa3bbf6f9b73d32d852b57727d669fcd5309b6e351c1c6
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/whale-net/workflows/releases/download/workflows-0.1.0/workflows-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-05T18:31:09.844425592Z"
+generated: "2024-11-05T18:41:31.630429629Z"
