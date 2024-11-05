@@ -11,19 +11,23 @@ from workflows.repositories.twitch import (
 )
 from workflows.repositories.slack import get_client, send_message
 
-LIVE_CHECK_PERIOD = timedelta(minutes=2000)
+# TODO - this minute should come from run config, last - current
+LIVE_CHECK_PERIOD = timedelta(minutes=1000)
 app = typer.Typer()
 
 
 # @app.command()
-def get_live_twitch_channels(twitch_app_id: str, twitch_app_secret: str):
-    # channels_to_check = [
-    #         'shadver',
-    #         'moomasterq',
-    #         'noodlesruns',
-    #         'kingcolony',
-    #     ]
-    channels_to_check = ["summit1g"]
+def get_live_twitch_channels(
+    twitch_app_id: str, twitch_app_secret: str, as_of: datetime | None
+):
+    # todo source from reasonable location
+    channels_to_check = [
+        "shadver",
+        "moomasterq",
+        "noodlesruns",
+        "kingcolony",
+        "summit1g",
+    ]
 
     twitch = asyncio.run(get_connection_twitch(twitch_app_id, twitch_app_secret))
 
@@ -33,7 +37,7 @@ def get_live_twitch_channels(twitch_app_id: str, twitch_app_secret: str):
             channel_logins=channels_to_check,
             live_grace_period=LIVE_CHECK_PERIOD,
             # TODO this should be the cron tab time passed in somehow
-            live_as_of=datetime.now(tz=timezone.utc),
+            live_as_of=as_of,
         )
     )
 
@@ -76,12 +80,14 @@ def send_recently_live_to_slack(
 
 
 @app.command()
-def temp_entrypoint():
+def temp_entrypoint(run_time: datetime | None = None):
     twitch_app_id = os.environ.get("TWITCH_API_APP_ID")
     twitch_app_secret = os.environ.get("TWITCH_API_APP_SECRET")
-    slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")
+    # slack_oauth_token = os.environ.get("SLACK_WHALEBOT_OAUTH_TOKEN")
     # TODO improve this
-    slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
+    # slack_channel_id = os.environ.get("SLACK_TWITCH_ALERT_CHANNEL_ID")
 
-    results = get_live_twitch_channels(twitch_app_id, twitch_app_secret)
-    send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)
+    results = get_live_twitch_channels(twitch_app_id, twitch_app_secret, run_time)
+    print(results)
+    return str(results)
+    # send_recently_live_to_slack(slack_oauth_token, slack_channel_id, results)

@@ -28,6 +28,7 @@ spec:
         args:
           - tts
           - temp-entrypoint
+          - '{{workflow.scheduledTime}}'
         env:
           - name: TWITCH_API_APP_ID
             valueFrom:
