@@ -39,8 +39,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        with:
-          charts_dir: chart
 
   build-and-push-image:
     runs-on: ubuntu-latest

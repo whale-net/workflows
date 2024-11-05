@@ -52,5 +52,5 @@ uvx pre-commit
 
 helm dry run
 ```
-helm install --dry-run workflows chart
+helm install --dry-run workflows charts/workflow-templates/
 ```
