@@ -34,6 +34,7 @@ jobs:
         run: |
           COMMIT_COUNT=$(curl -I -k "https://api.github.com/repos/whale-net/$GITHUB_REPOSITORY/commits?per_page=1&sha=$GITHUB_SHA" | sed -n '/^[Ll]ink:/ s/.*"next".*page=\([0-9]*\).*"last".*/\1/p')
           echo commit_count=$COMMIT_COUNT >> "$GITHUB_OUTPUT"
+          echo $COMMIT_COUNT
 
       - name: Configure Git
         run: |
