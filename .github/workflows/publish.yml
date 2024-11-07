@@ -55,7 +55,9 @@ jobs:
         run: uv sync
 
       - name: Update Helm version
-        run: uv run workflows tools update-helm-chart-version ${{ steps.commit_count.outputs.commit_count }}
+        run: uv run workflows tools update-helm-chart-version $COMMIT_COUNT
+        env:
+          COMMIT_COUNT: ${{ steps.commit_count.outputs.commit_count }}
 
       - name: Install Helm
         uses: azure/setup-helm@v4
