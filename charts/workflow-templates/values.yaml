@@ -24,7 +24,6 @@ secrets:
     name: slack-secrets
 # TODO - use this to create secrets if not already present? could be good for local dev?
 
-testvalue: my_value
 
 
 # eventually should set defaults, but for now whatever
